@@ -1,0 +1,8 @@
+# ignore files
+todo.task
+
+# ignore directories
+art/
+bin/
+build/
+out/
