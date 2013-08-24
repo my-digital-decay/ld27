@@ -39,11 +39,8 @@ function Main.loop ()
   --- Font
   ---
 
-  --[[
   Main.font = MOAIFont.new ()
-  Main.font:loadFromBMFont ( '../fonts/04b_03bx08.fnt' )
-  --MOAISerializer.serializeToFile ( "../fonts/proggy_debug.lua", font )
-  --]]
+  Main.font:loadFromBMFont ( _FONTS .. '/PG_32.fnt' )
 
   ---
   --- Main loop
@@ -67,10 +64,10 @@ function Main.loop ()
     layers[LAYER_BG]:setClearColor ( 0.0, 0.0, 0.0, 1.0 )
     --layers[LAYER_BG]:setClearDepth ( true )
 
----[[
+--[[
     splashScreen ( layers[LAYER_TOP] )
 --]]
----[[
+--[[
     layers[LAYER_BG]:setClearColor ( 0.2, 0.2, 0.2, 1.0 )
     titleScreen ( layers[LAYER_MAIN] )
     do
