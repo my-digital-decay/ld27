@@ -47,6 +47,19 @@ function Backend.onPointerEvent ( x, y )
   printf ( "[BE] pointer: %d, %d\n", x, y )
 --]]
 
+  local oldX = Backend.pointerX
+  local oldY = Backend.pointerY
+
+  local wx, wy = Backend.pickLayer:wndToWorld ( x, y )
+  printf ( "[BE] pointer (world): %0.2f, %0.2f\n", wx, wy )
+
+  Backend.pointerX = wx
+  Backend.pointerY = wy
+
+  if Backend.pick then
+    Backend.pick:addLoc ( wx - oldX, wy - oldY )
+  end
+
 end
 
 if nil ~= MOAIInputMgr.device.pointer then
@@ -64,6 +77,21 @@ function Backend.onMouseLeftEvent ( down )
     printf ( "[BE] mouse left: [up]\n" )
   end
 --]]
+
+  if true == down then
+    partition = Backend.pickLayer:getPartition ()
+    if nil ~= partition then
+      Backend.pick = partition:propForPoint ( Backend.pointerX, Backend.pointerY )
+
+      if Backend.pick then
+        print ( Backend.pick.name )
+      end
+    end
+  else
+    if Backend.pick then
+      Backend.pick = nil
+    end
+  end
 
 end
 

@@ -13,7 +13,7 @@ SCREEN_HEIGHT = 720
 
 MOAISim.openWindow ( "ld27", SCREEN_WIDTH, SCREEN_HEIGHT )
 
-viewport = MOAIViewport.new ()
+local viewport = MOAIViewport.new ()
 viewport:setSize ( SCREEN_WIDTH, SCREEN_HEIGHT )
 viewport:setScale ( SCREEN_WIDTH, -SCREEN_HEIGHT )
 
@@ -28,6 +28,7 @@ Main = {}
 Main.state = 0
 Main.state_new = 0
 Main.font = {}
+Main.viewport = viewport
 
 GAME_STATE_QUIT = 1
 GAME_STATE_FRONTEND = 2

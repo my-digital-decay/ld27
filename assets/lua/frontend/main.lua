@@ -32,7 +32,7 @@ function Frontend.main ()
   local layers = {}
   for i = 1, LAYER_TOP do
     local lr = MOAILayer2D.new ()
-    lr:setViewport ( viewport )
+    lr:setViewport ( Main.viewport )
     layers[i] = lr
   end
   Main.framebuffer:setRenderTable ( layers )
