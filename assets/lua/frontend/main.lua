@@ -8,6 +8,8 @@ require ( _CODE .. "/frontend/title" )
 
 Frontend = {}
 Frontend.state = 0
+Frontend.pointerX = 0
+Frontend.pointerY = 0
 
 function Frontend.main ()
 
@@ -40,6 +42,8 @@ function Frontend.main ()
 
   Frontend.state = Frontend.STATE_TITLE
   Frontend.state_new = Frontend.state
+
+  Frontend.pickLayer = layers[LAYER_MAIN]
 
   ---
   --- Game Loop

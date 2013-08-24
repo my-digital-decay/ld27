@@ -2,6 +2,12 @@
 --- backend/input.lua
 --- author: keith w. thompson
 
+--------------------------------------------------------------------------------
+---
+--- Keyboard
+---
+
+--------------------------------------------------------------------------------
 function Backend.onKeyboardEvent ( key, down )
 
   local KEY_BACK = 257 --- [esc]
@@ -27,5 +33,60 @@ end
 if nil ~= MOAIInputMgr.device.keyboard then
   printf ("[BE] keyboard event handler registered\n")
   MOAIInputMgr.device.keyboard:setCallback ( Backend.onKeyboardEvent )
+end
+
+--------------------------------------------------------------------------------
+---
+--- Mouse
+---
+
+--------------------------------------------------------------------------------
+function Backend.onPointerEvent ( x, y )
+
+---[[
+  printf ( "[BE] pointer: %d, %d\n", x, y )
+--]]
+
+end
+
+if nil ~= MOAIInputMgr.device.pointer then
+  printf ("[BE] pointer event handler registered\n")
+  MOAIInputMgr.device.pointer:setCallback ( Backend.onPointerEvent )
+end
+
+--------------------------------------------------------------------------------
+function Backend.onMouseLeftEvent ( down )
+
+---[[
+  if true == down then
+    printf ( "[BE] mouse left: [down]\n" )
+  else
+    printf ( "[BE] mouse left: [up]\n" )
+  end
+--]]
+
+end
+
+if nil ~= MOAIInputMgr.device.mouseLeft then
+  printf ("[BE] mouse left event handler registered\n")
+  MOAIInputMgr.device.mouseLeft:setCallback ( Backend.onMouseLeftEvent )
+end
+
+--------------------------------------------------------------------------------
+function Backend.onMouseRightEvent ( down )
+
+---[[
+  if true == down then
+    printf ( "[BE] mouse right: [down]\n" )
+  else
+    printf ( "[BE] mouse right: [up]\n" )
+  end
+--]]
+
+end
+
+if nil ~= MOAIInputMgr.device.mouseRight then
+  printf ("[BE] mouse right event handler registered\n")
+  MOAIInputMgr.device.mouseRight:setCallback ( Backend.onMouseRightEvent )
 end
 
