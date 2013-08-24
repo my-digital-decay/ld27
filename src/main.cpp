@@ -528,7 +528,6 @@ int GlfwHost ( int argc, char** argv )
     char* lastScript = NULL;
 
     if ( argc < 2 ) {
-        printf ("assets/lua/main.lua\n");
         AKURunScript ( "assets/lua/main.lua" );
     }
     else {
