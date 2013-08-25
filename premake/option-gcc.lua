@@ -26,9 +26,9 @@ if "gmake" == _ACTION then
   end
 
   if "osx" == _OPTIONS.gcc then
-    premake.gcc.cc = "gcc-4.8"
-    premake.gcc.cxx = "g++-4.8"
-    linkoptions { "-L\"" .. trim(os.outputof("brew --cellar")) .. "/gcc48/4.8.1/gcc/lib/i386\"" }
+--    premake.gcc.cc = "gcc-4.8"
+--    premake.gcc.cxx = "g++-4.8"
+--    linkoptions { "-L\"" .. trim(os.outputof("brew --cellar")) .. "/gcc48/4.8.1/gcc/lib/i386\"" }
     location (ROOT_PATH .. "/build/" .. _ACTION .. "-osx")
     DEV_PATH = trim(os.outputof("xcode-select --print-path")) .. "/Platforms/MacOSX.platform/Developer"
   end

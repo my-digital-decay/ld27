@@ -53,7 +53,7 @@ solution "ld27"
       "SQLITE_ENABLE_FTS3_PARENTHESIS",
     }
     buildoptions {
---      "-nostdinc",
+      "-nostdinc",
     }
     linkoptions {
       "-nodefaultlibs",
@@ -89,12 +89,14 @@ solution "ld27"
 --      "L_ENDIAN",
     }
     buildoptions {
-      "-F\"" .. DEV_PATH .. "/SDKs/MacOSX10.8.sdk/System/Library/Frameworks\"",
-      "-I\"" .. DEV_PATH .. "/SDKs/MacOSX10.8.sdk/usr/include\"",
+      "-F\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/System/Library/Frameworks\"",
+      "-I\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/usr/include\"",
+      "-I\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/usr/include/c++/4.2.1\"",
+      "-I/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include",
     }
     linkoptions {
-      "-F\"" .. DEV_PATH .. "/SDKs/MacOSX10.8.sdk/System/Library/Frameworks\"",
-      "-L\"" .. DEV_PATH .. "/SDKs/MacOSX10.8.sdk/usr/lib\"",
+      "-F\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/System/Library/Frameworks\"",
+      "-L\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/usr/lib\"",
     }
 
   configuration "linux"
@@ -112,7 +114,6 @@ solution "ld27"
   --- @section MOAI Libs
 
   dofile (MOAI_PATH .. "/premake/libmoai-3rdparty.lua")
---  dofile (MOAI_PATH .. "/premake/libmoai-box2d.lua") -- physics
   dofile (MOAI_PATH .. "/premake/libmoai-core.lua")
   dofile (MOAI_PATH .. "/premake/libmoai-sim.lua")
   dofile (MOAI_PATH .. "/premake/libmoai-untz.lua") -- sound
@@ -141,24 +142,17 @@ solution "ld27"
       MOAI_PATH .. "/src",
       MOAI_PATH .. "/src/config",
       MOAI_PATH .. "/3rdparty/glfw-2.7.8/include",
---      MOAI_PATH .. "/3rdparty/box2d-2.2.1",
---      ORANGE_PATH .. "/src",
---      ORANGE_PATH .. "/3rdparty/tinystl/include",
       ROOT_PATH .. "/src",
     }
     links {
       "libmoai-core",
       "libmoai-util",
       "libmoai-3rdparty",
---      "libmoai-box2d", -- physics
       "libmoai-untz", -- sound
       "libmoai-sim",
       "libzl-gfx",
       "libzl-util",
       "libzl-vfs",
-    }
-    buildoptions {
-      "-std=c++11"
     }
 
     --- cross-platform configuration specific settings
@@ -173,9 +167,6 @@ solution "ld27"
     --- platform specific settings
     --- osx
     configuration "osx"
---      defines {
---        "_ORANGE_PLATFORM_OSX"
---      }
       linkoptions {
         "-framework AudioToolbox", -- Untz
         "-framework AudioUnit", -- Untz
@@ -192,15 +183,6 @@ solution "ld27"
     }
 
     configuration { "osx", "debug" }
---      prelinkcommands {
---        "@echo Copying liborange-core to local directory ...",
---        "@cp ../" .. ORANGE_PATH .. "/bin/osx/liborange-core-d.dylib " .. debug_cfg.targetdir,
---        "@cp ../" .. ORANGE_PATH .. "/bin/osx/liborange-core-d.dylib ../../bin/osx/"
---      }
---      linkoptions {
---        "-L\"" .. debug_cfg.targetdir .. "\"",
---        "-lorange-core-d"
---      }
       postbuildcommands {
         "@mkdir ../../bin 2>/dev/null; true",
         "@mkdir ../../bin/osx 2>/dev/null; true",
@@ -208,15 +190,6 @@ solution "ld27"
       }
 
     configuration { "osx", "release" }
---      prelinkcommands {
---        "@echo Copying liborange-core to local directory ...",
---        "@cp ../" .. ORANGE_PATH .. "/bin/osx/liborange-core.dylib " .. release_cfg.targetdir,
---        "@cp ../" .. ORANGE_PATH .. "/bin/osx/liborange-core.dylib ../../bin/osx/"
---      }
---      linkoptions {
---        "-L\"" .. release_cfg.targetdir .. "\"",
---        "-lorange-core"
---      }
       postbuildcommands {
         "@mkdir ../../bin 2>/dev/null; true",
         "@mkdir ../../bin/osx 2>/dev/null; true",
@@ -225,9 +198,6 @@ solution "ld27"
 
     --- linux
     configuration "linux"
---      defines {
---        "_ORANGE_PLATFORM_LINUX"
---      }
       linkoptions {
         "-L/usr/lib/i386-linux-gnu",
         "-lSDL",
