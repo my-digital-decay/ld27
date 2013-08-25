@@ -93,6 +93,7 @@ solution "ld27"
       "-I\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/usr/include\"",
       "-I\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/usr/include/c++/4.2.1\"",
       "-I/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include",
+      "-mmacosx-version-min=10.6",
     }
     linkoptions {
       "-F\"" .. DEV_PATH .. "/SDKs/MacOSX10.7.sdk/System/Library/Frameworks\"",
